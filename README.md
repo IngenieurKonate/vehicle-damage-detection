@@ -11,7 +11,7 @@ scratch.
 - Mettre en place une chaîne complète de traitement des données et d’expérimentation.
 
 # Structure du projet
-
+   ```
 ├── data/
 │ ├── raw/ # données brutes originales (non modifiées)
 │ ├── processed/ # données après prétraitement (redimensionnement, normalisation, etc.)
@@ -26,7 +26,7 @@ scratch.
 │ └── utils.py # fonctions utilitaires communes (chargement, métriques, etc.)
 ├── README.md 
 └── requirements.txt # liste des dépendances Python nécessaires
-
+   ```
 
 ## Methodology
 - Prétraitement des images : nettoyage, redimensionnement et normalisation.
