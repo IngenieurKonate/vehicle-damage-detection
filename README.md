@@ -55,13 +55,11 @@ vehicle-damage-detection/              # Code local (VS Code + Git)
 │   └── model_b_config.yaml
 │
 ├── notebooks/                         # Notebooks Jupyter (exécutés sur Colab)
-│   ├── 00_setup_colab.ipynb          # Setup Colab + vérification GPU
-│   ├── 01_data_exploration.ipynb
-│   ├── 02_preprocessing.ipynb
-│   ├── 03_train_baseline.ipynb
-│   ├── 04_train_deep.ipynb
-│   ├── 05_evaluation.ipynb
-│   └── 06_analysis.ipynb
+│   ├── 01_data_preparation.ipynb     # Setup + Exploration + Prétraitement
+│   ├── 02_train_baseline.ipynb       # Entraînement Model A
+│   ├── 03_train_deep.ipynb           # Entraînement Model B
+│   ├── 04_evaluation.ipynb           # Comparaison des modèles
+│   └── 05_analysis.ipynb             # Analyse des erreurs
 │
 ├── src/                               # Code source
 │   ├── data/                         # Dataset, transforms, utils
@@ -116,10 +114,9 @@ Le projet combine deux datasets pour créer un dataset équilibré :
 
 ### Option 1 : Google Colab (Recommandé)
 
-1. Ouvrir `notebooks/00_setup_colab.ipynb` dans Colab
-2. Monter Google Drive
-3. Cloner le repo et configurer les chemins
-4. Exécuter les notebooks dans l'ordre (01 → 06)
+1. Ouvrir `notebooks/01_data_preparation.ipynb` dans Colab
+2. Monter Google Drive et configurer les chemins
+3. Exécuter les notebooks dans l'ordre (01 → 05)
 
 ### Option 2 : Local
 
@@ -139,13 +136,11 @@ pip install -r requirements.txt
 
 ## Pipeline
 
-1. **Setup** : Configuration Colab, montage Drive, vérification GPU
-2. **Exploration** : Visualisation des datasets, statistiques
-3. **Prétraitement** : Combinaison, échantillonnage, split stratifié
-4. **Entraînement Model A** : Baseline VGG-like
-5. **Entraînement Model B** : Deep CNN avec skip connections
-6. **Évaluation** : Comparaison des performances, matrices de confusion
-7. **Analyse** : Étude des erreurs, ablation studies
+1. **Préparation des données** : Setup Colab, exploration datasets, prétraitement et split stratifié
+2. **Entraînement Model A** : Baseline VGG-like
+3. **Entraînement Model B** : Deep CNN avec skip connections
+4. **Évaluation** : Comparaison des performances, matrices de confusion
+5. **Analyse** : Étude des erreurs, ablation studies
 
 ## Objectifs de Performance
 

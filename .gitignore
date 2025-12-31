@@ -123,3 +123,6 @@ wandb/
 
 # MLflow
 mlruns/
+
+# Claude Code
+CLAUDE.md
