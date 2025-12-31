@@ -1,0 +1,19 @@
+# Configuration spécifique pour Model A (Baseline VGG-like)
+
+model:
+  name: "BaselineCNN"
+  num_classes: 2
+  dropout_rate: 0.5
+
+  # Architecture VGG-like
+  channels: [32, 64, 128, 256, 512]
+
+training:
+  batch_size: 32
+  num_epochs: 100
+  learning_rate: 0.001
+  weight_decay: 0.0001
+
+checkpoint:
+  save_dir: "checkpoints/model_a"
+  save_best_only: true

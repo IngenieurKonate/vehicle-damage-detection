@@ -1,0 +1,20 @@
+# Configuration spécifique pour Model B (Deep CNN avec Skip Connections)
+
+model:
+  name: "DeepCNN"
+  num_classes: 2
+
+  # Architecture ResNet-like
+  stem_channels: 64
+  stage_channels: [64, 128, 256, 512]
+  blocks_per_stage: 2
+
+training:
+  batch_size: 32
+  num_epochs: 100
+  learning_rate: 0.001
+  weight_decay: 0.0001
+
+checkpoint:
+  save_dir: "checkpoints/model_b"
+  save_best_only: true

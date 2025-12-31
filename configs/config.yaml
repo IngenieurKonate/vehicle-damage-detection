@@ -1,0 +1,130 @@
+# =============================================================================
+# CONFIGURATION GÉNÉRALE DU PROJET
+# =============================================================================
+
+project:
+  name: "vehicle-damage-detection"
+  version: "1.0.0"
+  description: "CNN from scratch pour détection de dommages véhicules"
+  author: "Karamooo"
+
+# =============================================================================
+# DONNÉES
+# =============================================================================
+
+data:
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+
+  image:
+    size: [224, 224]
+    channels: 3
+    mean: [0.485, 0.456, 0.406]
+    std: [0.229, 0.224, 0.225]
+
+  split:
+    train: 0.70
+    val: 0.15
+    test: 0.15
+    seed: 42
+    stratified: true
+
+  classes:
+    - undamaged
+    - damaged
+
+# =============================================================================
+# AUGMENTATION
+# =============================================================================
+
+augmentation:
+  train:
+    horizontal_flip:
+      p: 0.5
+    rotation:
+      degrees: 15
+    color_jitter:
+      brightness: 0.2
+      contrast: 0.2
+      saturation: 0.1
+      hue: 0.05
+    random_resized_crop:
+      scale: [0.8, 1.0]
+
+  val: null  # Pas d'augmentation pour validation
+  test: null # Pas d'augmentation pour test
+
+# =============================================================================
+# MODÈLES
+# =============================================================================
+
+models:
+  baseline:
+    name: "BaselineCNN"
+    num_classes: 2
+    dropout_rate: 0.5
+
+  deep:
+    name: "DeepCNN"
+    num_classes: 2
+
+# =============================================================================
+# ENTRAÎNEMENT
+# =============================================================================
+
+training:
+  batch_size: 32
+  num_epochs: 100
+  num_workers: 4
+  pin_memory: true
+
+  optimizer:
+    name: "Adam"
+    lr: 0.001
+    weight_decay: 0.0001
+    betas: [0.9, 0.999]
+
+  scheduler:
+    name: "ReduceLROnPlateau"
+    mode: "min"
+    factor: 0.1
+    patience: 5
+    min_lr: 0.000001
+
+  early_stopping:
+    patience: 10
+    min_delta: 0.0001
+    monitor: "val_loss"
+
+  checkpointing:
+    save_best_only: true
+    monitor: "val_loss"
+
+# =============================================================================
+# ÉVALUATION
+# =============================================================================
+
+evaluation:
+  metrics:
+    - accuracy
+    - precision
+    - recall
+    - f1_score
+    - confusion_matrix
+
+# =============================================================================
+# CHEMINS
+# =============================================================================
+
+paths:
+  checkpoints: "checkpoints"
+  outputs: "outputs"
+  logs: "outputs/logs"
+  figures: "outputs/figures"
+
+# =============================================================================
+# REPRODUCTIBILITÉ
+# =============================================================================
+
+seed: 42
+deterministic: true
